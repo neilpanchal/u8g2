@@ -193,3 +193,18 @@ A: A Windows executable is available here:
 https://github.com/olikraus/u8g2/tree/master/tools/font/bdfconv
 Use the Makefile in this directory to create a Linux binary.
 
+Q: How can I use multiple SPI Displays?
+A: In addition to the CS line, you will also need a separate RST line for each display. 
+```C++
+    display1.begin();
+    display2.begin();
+
+    display1.setCursor(64, 20);
+    display1.print("DISPLAY 1");
+    display1.sendBuffer();
+
+    display2.setCursor(64, 20);
+    display2.print("DISPLAY 2");
+    display2.sendBuffer();
+```
+Make sure you send buffer after each display printout.
